@@ -11,6 +11,38 @@ export const NewAssessment = () => {
   };
 
   return <Form>
+
+    <div>
+      <h1>Cat Behavioral Instrument</h1>
+
+    </div>
+    <div>
+      <div>Cat Details</div>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Cat Name</Form.Label>
+        <Form.Control type="text" placeholder="Micky" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Date of Birth</Form.Label>
+        <Form.Control type="text" placeholder="02-02-2020" />
+      </Form.Group>
+
+
+
+    </div>
+
+    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Label>Instrument Name</Form.Label>
+      <Form.Control type="text" placeholder="" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Label>Calculated score</Form.Label>
+      <Form.Control type="number" placeholder="name@example.com" />
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Label>Determined risk level</Form.Label>
+      <Form.Control type="text" placeholder="name@example.com" />
+    </Form.Group>
     <Button variant="primary" type="submit">Submit</Button>
   </Form>;
 };
