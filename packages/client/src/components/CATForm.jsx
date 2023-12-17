@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const CATForm = () => {
@@ -9,13 +9,12 @@ export const CATForm = () => {
     watch,
   } = useForm();
 
-  function onSubmit(data) {
-    return console.log(data);
-  }
   console.log(errors);
-
-  console.log(watch(`example`));// watch input value by passing the name of it
-
+  // console.log(handleSubmit);
+  // console.log(watch(`example`));// watch input value by passing the name of it
+  const onSubmit = (data) => {
+    console.log(`Form submitted`, data);
+  };
   return (
     <>
       <div> <h1>Cat Assessment Info</h1>

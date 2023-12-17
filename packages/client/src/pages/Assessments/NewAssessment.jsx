@@ -9,6 +9,7 @@ export const NewAssessment = () => {
 
   const onSubmit = async (data) => {
     await AssessmentService.submit(data);
+    console.log(`ent to assessment service`);
 
   };
   return (
