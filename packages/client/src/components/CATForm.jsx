@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import Form from 'react-bootstrap';
 
-export const CATForm = () => {
+export const CATForm = ({ onSubmit }) => {
   const {
     formState: { errors },
     handleSubmit,
@@ -9,12 +10,10 @@ export const CATForm = () => {
     watch,
   } = useForm();
 
-  console.log(errors);
+  // console.log(errors);
   // console.log(handleSubmit);
   // console.log(watch(`example`));// watch input value by passing the name of it
-  const onSubmit = (data) => {
-    console.log(`Form submitted`, data);
-  };
+
   return (
     <>
       <div> <h1>Cat Assessment Info</h1>
@@ -25,7 +24,7 @@ export const CATForm = () => {
           </ul>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <div><h2>Cat Details</h2>
             <ul>
               <li>
@@ -150,8 +149,7 @@ export const CATForm = () => {
                   />
                   Yes (score = 1)
                 </label>
-              </li>
-              <li>
+                <br />
                 <label htmlFor="Hiss_Str_No">
                   <input
                     {...register(`Hiss_Str_No`)}
@@ -166,7 +164,7 @@ export const CATForm = () => {
           </div>
 
           <input type="submit" />
-        </form>
+        </Form>
       </div>
     </>
   );

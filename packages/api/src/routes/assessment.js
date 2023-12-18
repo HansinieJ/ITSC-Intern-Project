@@ -7,10 +7,10 @@ const assessmentRouter = Router();
 
 assessmentRouter.post(
   `/`,
-  async (req, res, next) => {
+  (req, res, next) => {
     try {
       const { assessment } = req.body;
-
+      console.log(assessment);
       // verify that your data is making it here to the API by using console.log(assessment);
       // call the AssessmentService.submit function from packages/api/src/microservices/Assessment-Service.js and
       // supply the correct parameters

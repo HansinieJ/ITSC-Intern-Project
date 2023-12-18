@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { AssessmentService } from '../../services/AssessmentService';
 import { CATForm } from '../../components/CATForm';
 
@@ -9,10 +10,10 @@ export const NewAssessment = () => {
 
   const onSubmit = async (data) => {
     await AssessmentService.submit(data);
-    console.log(`ent to assessment service`);
+    console.log(`assessment service`, data);
 
   };
   return (
-    <CATForm />
+    <CATForm onSubmit={onSubmit} />
   );
 };
