@@ -7,6 +7,7 @@ export const CATForm = ({ onSubmit }) => {
     formState: { errors },
     handleSubmit,
     register,
+    reset,
     watch,
   } = useForm();
 
@@ -14,17 +15,26 @@ export const CATForm = ({ onSubmit }) => {
   // console.log(handleSubmit);
   // console.log(watch(`example`));// watch input value by passing the name of it
 
+  const onSubmitHandler = (values) => {
+    console.log(`values from CATForm`, values);
+    onSubmit(values);
+    reset();
+  };
+
   return (
     <>
       <div> <h1>Cat Assessment Info</h1>
-        <div>
-          <h2>Instrument</h2>
-          <ul>
-            <li>Cat Behavioral Instrument </li>
-          </ul>
-        </div>
 
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <div>
+            <h2>Instrument</h2>
+            <ul>
+              <li>Cat Behavioral Instrument </li>
+            </ul>
+            <input {...register(`instrumentType`, { required: `*Required Field` })}
+              placeholder="Instrument Type" type="text" id="instrumntTypeID" />
+            <p>{errors.catName?.message}</p>
+          </div>
           <div><h2>Cat Details</h2>
             <ul>
               <li>
@@ -49,9 +59,9 @@ export const CATForm = ({ onSubmit }) => {
                 <h3>Previous contact with the Cat Judicial System</h3>
                 <label htmlFor="Prev_Cat_No">
                   <input
-                    {...register(`Prev_Cat_No`)}
+                    {...register(`Prev_Cat`)}
                     type="radio"
-                    value="No"
+                    value="0"
                     id="Prev_Cat_No"
                   />
                   No (score = 0)
@@ -60,9 +70,9 @@ export const CATForm = ({ onSubmit }) => {
 
                 <label htmlFor="Prev_Cat_Yes">
                   <input
-                    {...register(`Prev_Cat_Yes`)}
+                    {...register(`Prev_Cat`)}
                     type="radio"
-                    value="Yes"
+                    value="1"
                     id="Prev_Cat_Yes"
                   />
                   Yes (score = 1)
@@ -73,9 +83,9 @@ export const CATForm = ({ onSubmit }) => {
                 <h3>Physical altercations with other cats</h3>
                 <label htmlFor="0_3_alt_Cats">
                   <input
-                    {...register(`0_3_alt_Cats`)}
+                    {...register(`alt_Cats`)}
                     type="radio"
-                    value="No"
+                    value="0"
                     id="0_3_alt_Cats"
                   />
                   0-3 altercations (score = 0)
@@ -83,9 +93,9 @@ export const CATForm = ({ onSubmit }) => {
                 <br />
                 <label htmlFor="3plus_alt_Cats">
                   <input
-                    {...register(`3plus_alt_Cats`)}
+                    {...register(`alt_Cats`)}
                     type="radio"
-                    value="Yes"
+                    value="1"
                     id="3plus_alt_Cats"
                   />
                   3+ altercations (score = 1)
@@ -96,20 +106,20 @@ export const CATForm = ({ onSubmit }) => {
                 <h3>Physical altercations with owner (scratching, biting, etc...)</h3>
                 <label htmlFor="10plus_alt_owner">
                   <input
-                    {...register(`10plus_alt_owner`)}
+                    {...register(`alt_owner`)}
                     type="radio"
-                    value="No"
+                    value="1"
                     id="10plus_alt_owner"
                   />
                   10+ altercations (score = 1)
                 </label>
                 <br />
-                <label htmlFor="10plus_alt_owner">
+                <label htmlFor="0_10_alt_owner">
                   <input
-                    {...register(`0-10 altercations (score = 0)`)}
+                    {...register(`alt_owner`)}
                     type="radio"
-                    value="Yes"
-                    id="0-10 altercations (score = 0)"
+                    value="0"
+                    id="0_10_alt_owner"
                   />
                   0-10 altercations (score = 0)
                 </label>
@@ -119,9 +129,9 @@ export const CATForm = ({ onSubmit }) => {
                 <h3>Plays well with dogs</h3>
                 <label htmlFor="Play_dog_No">
                   <input
-                    {...register(`Play_dog_No`)}
+                    {...register(`Play_dog`)}
                     type="radio"
-                    value="No"
+                    value="1"
                     id="Play_dog_No"
                   />
                   No (score = 1)
@@ -129,9 +139,9 @@ export const CATForm = ({ onSubmit }) => {
                 <br />
                 <label htmlFor="Play_dog_Yes">
                   <input
-                    {...register(`Play_dog_Yes`)}
+                    {...register(`Play_dog`)}
                     type="radio"
-                    value="Yes"
+                    value="1"
                     id="Play_dog_Yes"
                   />
                   Yes (score = 0)
@@ -142,9 +152,9 @@ export const CATForm = ({ onSubmit }) => {
                 <h3>Hisses at strangers</h3>
                 <label htmlFor="Hiss_Str_Yes">
                   <input
-                    {...register(`Hiss_Str_Yes`)}
+                    {...register(`Hiss_Str`)}
                     type="radio"
-                    value="No"
+                    value="1"
                     id="Hiss_Str_Yes"
                   />
                   Yes (score = 1)
@@ -152,9 +162,9 @@ export const CATForm = ({ onSubmit }) => {
                 <br />
                 <label htmlFor="Hiss_Str_No">
                   <input
-                    {...register(`Hiss_Str_No`)}
+                    {...register(`Hiss_Str`)}
                     type="radio"
-                    value="Yes"
+                    value="0"
                     id="Hiss_Str_No"
                   />
                   No (score = 0)
@@ -164,7 +174,7 @@ export const CATForm = ({ onSubmit }) => {
           </div>
 
           <input type="submit" />
-        </Form>
+        </form>
       </div>
     </>
   );
