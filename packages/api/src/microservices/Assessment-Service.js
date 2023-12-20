@@ -1,4 +1,5 @@
-const { Assessments } = require(`../database/models`);
+const { Assessment } = require(`../database/models`);
+const dayjs = require(`dayjs`);
 
 exports.submit = async (assessmentPayload) => {
   // use the sequelize model Assessments from packages/api/src/database/models to save
@@ -26,17 +27,23 @@ exports.submit = async (assessmentPayload) => {
 
     const instrumentType = String(assessment.instrumentType);
     const { catName } = assessment;
-    const { CatDoB } = assessment;
+
+    const { catDoB } = assessment;
+    // const formattedDate = CatDoB.toLocaleDateString();
+    // const CatDoBDate = Date.parse(formattedDate);
+    // console.log(assessment.CatDoB);
+
     const score = calculateScore(assessment);
     const riskLevel = calculateRisk(score);
-    const date = new Date();
-    const createAt = date.getDate();
-    const updateAt = date.getDate();
-    const deleteAt = date.getDate();
+
+    const currentDate = new Date().toDateString();
+    const createAt = currentDate;
+    const updateAt = currentDate;
+    const deleteAt = currentDate;
 
     return (
       {
-        CatDoB,
+        catDateOfBirth: catDoB,
         catName,
         createAt,
         deleteAt,
@@ -50,9 +57,9 @@ exports.submit = async (assessmentPayload) => {
 
   };
 
-  const test = convertFormValuesToStoreInDB(assessmentPayload);
-  console.log(test);
-  const result = await Assessments.create(StoreToDB(assessmentPayload));
+  const test = StoreToDB(assessmentPayload);
+  console.log(`DB object to parse`, test);
+  const result = await Assessment.create(StoreToDB(assessmentPayload));
   if (result) {
     console.log(`result stored in DB`);
     return result;
@@ -63,7 +70,7 @@ exports.submit = async (assessmentPayload) => {
 exports.getList = () => {
   // use the sequelize model Assessments from packages/api/src/database/models to fetch
   // the assessment data from the PostgreSQL database
-  const assessments = [];
+  const assessment = [];
 
-  return assessments;
+  return assessment;
 };
