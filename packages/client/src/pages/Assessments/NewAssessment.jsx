@@ -1,7 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
 import { AssessmentService } from '../../services/AssessmentService';
 import { CATForm } from '../../components/CATForm';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const NewAssessment = () => {
 
@@ -12,8 +14,12 @@ export const NewAssessment = () => {
     await AssessmentService.submit(data);
     console.log(`assessment service`, data);
 
+    toast(`Successfully submitted`);
   };
   return (
-    <CATForm onSubmit={onSubmit} />
+    <>
+      <CATForm onSubmit={onSubmit} />
+      <ToastContainer />
+    </>
   );
 };

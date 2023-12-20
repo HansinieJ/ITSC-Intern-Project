@@ -1,10 +1,9 @@
 const { Assessment } = require(`../database/models`);
-const dayjs = require(`dayjs`);
 
 exports.submit = async (assessmentPayload) => {
   // use the sequelize model Assessments from packages/api/src/database/models to save
   // the assessment data in the PostgreSQL database
-
+  console.log(`testing 2`);
   const calculateScore = (assessment) => {
     const score = Number(assessment.Prev_Cat) +
       Number(assessment.alt_Cats) +
