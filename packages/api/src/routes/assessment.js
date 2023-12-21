@@ -15,7 +15,7 @@ assessmentRouter.post(
       // call the AssessmentService.submit function from packages/api/src/microservices/Assessment-Service.js and
       // supply the correct parameters
       AssessmentService.submit(assessment);
-
+      console.log(`testing 1`);
       ResponseHandler(
         res,
         `Submitted assessment to DB`,
@@ -33,8 +33,8 @@ assessmentRouter.get(
     try {
       // verify that your data is making it here to the API by using console.log();
       // call the AssessmentService.getList function from packages/api/src/microservices/Assessment-Service.js
-      const assessments = [];
-
+      const assessments = await AssessmentService.getList();
+      console.log(`Retrieved results from database`);
       ResponseHandler(
         res,
         `Fetched assessments`,

@@ -66,10 +66,15 @@ exports.submit = async (assessmentPayload) => {
   console.log(`error`);
 };
 
-exports.getList = () => {
+exports.getList = async () => {
   // use the sequelize model Assessments from packages/api/src/database/models to fetch
   // the assessment data from the PostgreSQL database
-  const assessment = [];
-
-  return assessment;
+  // const assessment = [];
+  const retrievedResults = await Assessment.findAll();
+  if (retrievedResults) {
+    console.log(`results received`);
+    console.log(retrievedResults);
+    return retrievedResults;
+  }
+  console.log(`error`);
 };

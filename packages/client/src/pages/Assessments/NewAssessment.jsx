@@ -14,7 +14,7 @@ export const NewAssessment = () => {
     await AssessmentService.submit(data);
     console.log(`assessment service`, data);
 
-    toast(`Successfully submitted`);
+    // toast(`Successfully submitted`);
   };
   return (
     <>
