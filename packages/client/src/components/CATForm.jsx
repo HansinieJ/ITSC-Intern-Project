@@ -32,7 +32,7 @@ export const CATForm = ({ onSubmit }) => {
               <li>Cat Behavioral Instrument </li>
             </ul>
             <input {...register(`instrumentType`, { required: `*Required Field` })}
-              placeholder="Instrument Type" type="text" id="instrumntTypeID" />
+              placeholder="Instrument Type" type="number" id="instrumntTypeID" />
             <p>{errors.catName?.message}</p>
           </div>
           <div><h2>Cat Details</h2>
