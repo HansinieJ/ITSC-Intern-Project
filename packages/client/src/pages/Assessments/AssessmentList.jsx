@@ -19,7 +19,7 @@ export const AssessmentList = () => {
           List goes here
           Please use the library react-table https://www.npmjs.com/package/react-table
       */}
-      <h1>Assessments</h1>
+      <h1>List of Assessments</h1>
       <table border="1">
         <thead>
           <tr>

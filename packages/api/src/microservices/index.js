@@ -1,5 +1,5 @@
 const AssessmentService = require(`./Assessment-Service`);
-const UserService = require(`./User-Service`);
+const UserService = require(`./UserService`);
 
 module.exports = {
   AssessmentService,

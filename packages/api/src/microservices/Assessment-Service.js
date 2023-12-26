@@ -15,11 +15,13 @@ exports.submit = async (assessmentPayload) => {
 
   const calculateRisk = (score) => {
 
-    if (score) {
+    if (score === 0 || score === 1) {
+      return `Low`;
+    } else if (score === 2 || score === 3) {
+      return `Medium`;
+    } else if (score === 4 || score === 5) {
       return `High`;
     }
-    return `Low`;
-
   };
 
   const StoreToDB = (assessment) => {
