@@ -15,9 +15,23 @@ exports.submit = async (LoginData) => {
     console.log(`User found in DB`);
     const passwordMatch = await bcrypt.compare(LoginData.pwd, result.password);
     if (passwordMatch) {
-      return result;
-    } return `Passwords not match`;
-  }
+      // Create a new object without including the password property
+      const userWithoutPassword = {
+        created_at: result.created_at,
+        deleted_at: result.deleted_at,
+        first_name: result.first_name,
+        is_supervisor: result.is_supervisor,
+        last_name: result.last_name,
+        updated_at: result.updated_at,
+        userid: result.userid, // Include other properties as needed
+        username: result.username,
+
+      };
+
+      return userWithoutPassword;
+    }
+
+  } return `Passwords not match`;
 };
 
 exports.create = async (LoginData) => {
