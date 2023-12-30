@@ -5,16 +5,18 @@ exports.submit = async (LoginData) => {
   // use the sequelize model Assessments from packages/api/src/database/models to save
   // the assessment data in the PostgreSQL database
   console.log(`testing 2`, LoginData);
-  const result = await Users.findAll({
+  const result = await Users.findOne({
     where: {
-      password: LoginData.pwd,
       username: LoginData.username,
 
     },
   });
   if (result) {
     console.log(`User found in DB`);
-    return result;
+    const passwordMatch = await bcrypt.compare(LoginData.pwd, result.password);
+    if (passwordMatch) {
+      return result;
+    } return `Passwords not match`;
   }
 };
 

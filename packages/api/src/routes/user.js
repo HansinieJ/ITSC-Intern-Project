@@ -17,7 +17,7 @@ userRouter.post(
       const response = await UserService.submit(LoginData);
       let msg = ``;
       console.log(`testing 1`, response);
-      if (response.length) {
+      if (response) {
         msg = `Found user in DB`;
       } else {
         msg = `User not found`;
@@ -25,7 +25,9 @@ userRouter.post(
       ResponseHandler(
         res,
         msg,
+        response,
       );
+      console.log(`testing 5`, response);
     } catch (err) {
       next(err);
     }
