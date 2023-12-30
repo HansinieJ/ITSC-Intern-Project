@@ -31,7 +31,7 @@ exports.submit = async (LoginData) => {
       return userWithoutPassword;
     }
 
-  } return `Passwords not match`;
+  } return null;
 };
 
 exports.create = async (LoginData) => {

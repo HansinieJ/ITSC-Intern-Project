@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
@@ -6,7 +7,6 @@ import { LoginService } from '../../services/LoginService';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = () => {
-
   const {
     formState: { errors },
     handleSubmit,
@@ -15,11 +15,18 @@ export const Login = () => {
     watch,
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
-    const response = await LoginService.submit(data);
-    console.log(`Login service`, data);
-    reset();
-    toast(response.message);
+    try {
+      const response = await LoginService.submit(data);
+      console.log(`Login service`, data);
+      reset();
+      toast(response.message);
+      console.log(`Login data`, response);
+      navigate(`/assessment/list`);
+    }
+    catch (error) { toast.error(error.message); }
 
   };
 

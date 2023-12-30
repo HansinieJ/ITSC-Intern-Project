@@ -1,3 +1,4 @@
+
 import Axios from '../utils/http.config';
 
 export class LoginService {
@@ -10,7 +11,15 @@ export class LoginService {
       return Axios.post(`/user/`, {
         LoginData,
       })
-        .then(response => response.data);
+        .then(response => response.data)
+        .then(response => {
+          if (response.status === `FAIL`) {
+            throw new Error(response.message);
+
+          }
+          return response;
+        });
+
     }
     catch (err) {
       throw new Error(`${err.response.statusText} - ${err.response.data.message}`);

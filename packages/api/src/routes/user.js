@@ -16,16 +16,19 @@ userRouter.post(
       // supply the correct parameters
       const response = await UserService.submit(LoginData);
       let msg = ``;
+      let status;
       console.log(`testing 1`, response);
       if (response) {
         msg = `Found user in DB`;
       } else {
         msg = `User not found`;
+        status = `FAIL`;
       }
       ResponseHandler(
         res,
         msg,
         response,
+        status,
       );
       console.log(`testing 5`, response);
     } catch (err) {
