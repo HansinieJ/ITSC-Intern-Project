@@ -56,7 +56,7 @@ InferCreationAttributes<Users>
         type: DataTypes.DATE,
       },
       updated_at: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
       },
       deleted_at: {
